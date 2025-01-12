@@ -3,49 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects Showcase</title>
+    <title>Google Sheets Data</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Project Showcase</h1>
-            <p>Manage and display your amazing projects!</p>
+            <h1>Google Sheets Data Viewer</h1>
+            <p>Displaying data directly from Google Sheets.</p>
         </div>
     </header>
 
     <main>
-        <section id="add-project">
+        <section id="data-table">
             <div class="container">
-                <h2>Add a New Project</h2>
-                <form id="project-form">
-                    <label for="project-name">Project Name:</label>
-                    <input type="text" id="project-name" required>
-                    
-                    <label for="project-description">Project Description:</label>
-                    <textarea id="project-description" required></textarea>
-                    
-                    <label for="project-link">Project Link:</label>
-                    <input type="url" id="project-link" required>
-                    
-                    <button type="submit">Add Project</button>
-                </form>
-            </div>
-        </section>
-
-        <section id="projects">
-            <div class="container">
-                <h2>My Projects</h2>
-                <div id="projects-list" class="projects-grid">
-                    <!-- Projects will be added dynamically here -->
-                </div>
+                <h2>Data from Google Sheets</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Register Number</th>
+                            <th>Time In</th>
+                            <th>Source</th>
+                            <th>Time Out</th>
+                            <th>Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sheet-data">
+                        <!-- Data will be loaded dynamically here -->
+                    </tbody>
+                </table>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Projects Showcase. All rights reserved.</p>
+            <p>&copy; 2025 Google Sheets Viewer. All rights reserved.</p>
         </div>
     </footer>
 
