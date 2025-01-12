@@ -1,26 +1,33 @@
 // script.js
 
-// Handle project addition
-document.getElementById('project-form').addEventListener('submit', function (e) {
-    e.preventDefault();
+// Published Google Sheet as JSON feed URL
+const SHEET_JSON_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSQCLXQCYn4DP1So-8Ih5IX6OuVMt5ADbBlWk9JUuD8iOkLdYiax2cZi2MeiR4yz-3yJJZQdesb0-8U/pub?output=tsv';
 
-    // Get form values
-    const name = document.getElementById('project-name').value;
-    const description = document.getElementById('project-description').value;
-    const link = document.getElementById('project-link').value;
+document.addEventListener('DOMContentLoaded', () => {
+    const tableBody = document.getElementById('sheet-data');
 
-    // Create a new project card
-    const projectCard = document.createElement('div');
-    projectCard.className = 'project-card';
-    projectCard.innerHTML = `
-        <h3>${name}</h3>
-        <p>${description}</p>
-        <a href="${link}" target="_blank">View Project</a>
-    `;
+    fetch(SHEET_JSON_URL)
+        .then(response => response.text())
+        .then(data => {
+            const rows = data.split('\n');
+            const headers = rows[0].split('\t'); // Split the header row by tab
+            const tableRows = rows.slice(1); // Skip the header row
 
-    // Add the card to the projects list
-    document.getElementById('projects-list').appendChild(projectCard);
+            tableRows.forEach(row => {
+                const columns = row.split('\t'); // Split each row by tab
+                const tableRow = document.createElement('tr');
 
-    // Clear form fields
-    document.getElementById('project-form').reset();
+                columns.forEach(cell => {
+                    const cellElement = document.createElement('td');
+                    cellElement.textContent = cell || '-';
+                    tableRow.appendChild(cellElement);
+                });
+
+                tableBody.appendChild(tableRow);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching Google Sheets data:', error);
+            tableBody.innerHTML = '<tr><td colspan="6">Error loading data</td></tr>';
+        });
 });
