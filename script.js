@@ -10,14 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.text())
         .then(data => {
             const rows = data.split('\n');
-            const headers = rows[0].split('\t'); // Split the header row by tab
             const tableRows = rows.slice(1); // Skip the header row
 
             tableRows.forEach(row => {
                 const columns = row.split('\t'); // Split each row by tab
+
+                // Skip if row doesn't have expected columns
+                if (columns.length < 6) return;
+
+                // Remove the first column (timestamp)
+                const filteredColumns = columns.slice(1);
+
                 const tableRow = document.createElement('tr');
 
-                columns.forEach(cell => {
+                filteredColumns.forEach(cell => {
                     const cellElement = document.createElement('td');
                     cellElement.textContent = cell || '-';
                     tableRow.appendChild(cellElement);
