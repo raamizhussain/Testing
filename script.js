@@ -1,28 +1,21 @@
 // script.js
 
-// Published Google Sheet as JSON feed URL
-const SHEET_JSON_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vThq2qnsUO_jBqCLHlP1VZzyWZP72WKQtbLdDw1utmq0_xKkSc7D-mrb5JzF2qdDAKZIlnKZdNkdr6Q/pub?output=csv';
+// Replace this with your Web App URL
+const SHEET_JSON_URL = 'YOUR_WEB_APP_URL';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('sheet-data');
 
     fetch(SHEET_JSON_URL)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            const rows = data.split('\n');
-            const tableRows = rows.slice(1); // Skip the header row
-
-            tableRows.forEach(row => {
-                const columns = row.split(',');
-
-                // Skip if the row doesn't have at least 3 columns
-                if (columns.length < 3) return;
-
+            data.forEach(row => {
                 const tableRow = document.createElement('tr');
 
-                columns.slice(0, 3).forEach(cell => {
+                // Create table cells for each row
+                Object.values(row).forEach(cell => {
                     const cellElement = document.createElement('td');
-                    cellElement.textContent = cell.trim() || '-';
+                    cellElement.textContent = cell || '-';
                     tableRow.appendChild(cellElement);
                 });
 
@@ -31,6 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error fetching Google Sheets data:', error);
-            tableBody.innerHTML = '<tr><td colspan="3">Error loading data</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="2">Error loading data</td></tr>';
         });
 });
