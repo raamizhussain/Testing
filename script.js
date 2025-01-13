@@ -1,4 +1,4 @@
-const SHEET_JSON_URL = 'YOUR_WEB_APP_URL';
+const SHEET_JSON_URL = 'https://script.google.com/macros/s/AKfycbwPUPhbzBRNJ7QtAV79FjsnEO_A8ETF297ZsTrbQRBWOfl5PDCruiKSvy1cNWXqzL6H1g/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('sheet-data');
