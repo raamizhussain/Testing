@@ -1,4 +1,4 @@
-const SHEET_JSON_URL = 'https://script.google.com/macros/s/AKfycbwDHr44XBLofFVppAZGgjmC9HAjb4tSm2ZBgVgUV_WClGpHu_yc1DWXqoeSgVw0VvRqoA/exec';
+const SHEET_JSON_URL = 'https://script.google.com/macros/s/AKfycbytnQZCtWEXdqfgh4Hgg8l9uGV4jmvWw0sua4VL8APdfnH0CITIPG6gSiu5SwYGIm29SA/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('sheet-data');
