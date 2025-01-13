@@ -1,7 +1,8 @@
 // script.js
 
 // Published Google Sheet as JSON feed URL
-const SHEET_JSON_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vThq2qnsUO_jBqCLHlP1VZzyWZP72WKQtbLdDw1utmq0_xKkSc7D-mrb5JzF2qdDAKZIlnKZdNkdr6Q/pubhtml';
+const SHEET_JSON_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vThq2qnsUO_jBqCLHlP1VZzyWZP72WKQtbLdDw1utmq0_xKkSc7D-mrb5JzF2qdDAKZIlnKZdNkdr6Q/pub?output=csv
+';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('sheet-data');
