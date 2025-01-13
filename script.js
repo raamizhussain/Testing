@@ -1,8 +1,7 @@
 // script.js
 
 // Published Google Sheet as JSON feed URL
-const SHEET_JSON_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vThq2qnsUO_jBqCLHlP1VZzyWZP72WKQtbLdDw1utmq0_xKkSc7D-mrb5JzF2qdDAKZIlnKZdNkdr6Q/pub?output=csv
-';
+const SHEET_JSON_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vThq2qnsUO_jBqCLHlP1VZzyWZP72WKQtbLdDw1utmq0_xKkSc7D-mrb5JzF2qdDAKZIlnKZdNkdr6Q/pub?output=csv';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('sheet-data');
@@ -14,19 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const tableRows = rows.slice(1); // Skip the header row
 
             tableRows.forEach(row => {
-                const columns = row.split('\t'); // Split each row by tab
+                const columns = row.split(',');
 
-                // Skip if row doesn't have expected columns
-                if (columns.length < 6) return;
-
-                // Remove the first column (timestamp)
-                const filteredColumns = columns.slice(1);
+                // Skip if the row doesn't have at least 3 columns
+                if (columns.length < 3) return;
 
                 const tableRow = document.createElement('tr');
 
-                filteredColumns.forEach(cell => {
+                columns.slice(0, 3).forEach(cell => {
                     const cellElement = document.createElement('td');
-                    cellElement.textContent = cell || '-';
+                    cellElement.textContent = cell.trim() || '-';
                     tableRow.appendChild(cellElement);
                 });
 
@@ -35,6 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error fetching Google Sheets data:', error);
-            tableBody.innerHTML = '<tr><td colspan="6">Error loading data</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="3">Error loading data</td></tr>';
         });
 });
