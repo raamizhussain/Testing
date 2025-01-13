@@ -1,6 +1,4 @@
-
-// Replace this with your Web App URL
-const SHEET_JSON_URL = 'https://script.google.com/macros/s/AKfycby7FxONZN8kfIBOTbaRWloYreC3W0pfP3wtLWES_FZOAku2R1FSN3qb9mLvrECnHchBzw/exec';
+const SHEET_JSON_URL = 'YOUR_WEB_APP_URL';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('sheet-data');
@@ -10,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            return response.json();
+            return response.json(); // Parse JSON response
         })
         .then(data => {
             if (data.error) {
